@@ -55,7 +55,6 @@ const game = () => {
     }
 
     const dropCandy = () => {
-        // await delay
         boardArray.value[0].forEach((candy, x) => {
             if(candy.color === '') {
                 boardArray.value[0][x] = {
@@ -79,6 +78,8 @@ const game = () => {
                 }
             }
         }
+
+        boardArray.value = [...boardArray.value]
     }
 
     const checkMatch = (candy) => {
@@ -130,15 +131,16 @@ const game = () => {
     }
 
     const clearUpMatch = (clearUpArr) => {
-        // console.log(clearUpArr);
+        
         if(clearUpArr.length === 0) return;
+        console.log(clearUpArr);
 
         for (let y = 0; y < boardArray.value.length; y++) {
-            boardArray.value[y].map(candy => {
-                if(clearUpArr.includes(candy.id)) {
-                    candy.color = ''
+            for (let x = 0; x < boardArray.value[y].length; x++) {
+                if(clearUpArr.includes(boardArray.value[y][x].id)) {
+                    boardArray.value[y][x].color = ''
                 }
-            })
+            }
         }
 
         if(isGameStart.value) {
