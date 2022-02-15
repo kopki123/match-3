@@ -153,7 +153,7 @@ const game = () => {
             isGameStart.value = false;
             candyId.value = 0;
             score.value = 0;
-            actionPoints.value = 5;
+            actionPoints.value = 10;
             init();
         }, 100);
     }
