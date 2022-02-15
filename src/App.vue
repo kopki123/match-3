@@ -10,13 +10,17 @@
         class="candy"
         v-for="candy in row"
         :key="candy.id"
-        :style="{ background: candy.color }"
+        :style="{
+          background: candy.color,
+          top: candy.y * 50 + 'px',
+          left: candy.x * 50 + 'px',
+        }"
         draggable="true"
         @dragstart="dragstart(candy)"
         @dragover.prevent="() => {}"
         @drop="drop(candy)"
       >
-        {{ candy.id }}
+        <!-- {{ candy.id }} -->
       </div>
     </div>
   </div>
@@ -51,7 +55,6 @@ export default {
       while (checkEmpty()) {
         dropCandy();
       }
-
       boardArray.value.forEach((row) => {
         row.forEach((candy) => {
           clearUpMatch(checkMatch(candy));
@@ -100,6 +103,9 @@ export default {
         return;
       }
 
+      clearUpMatch(checkMatch(draggingCandy.value));
+      clearUpMatch(checkMatch(dropingCandy.value));
+
       boardArray.value = [...boardArray.value];
       actionPoints.value -= 1;
     };
@@ -109,7 +115,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -128,27 +134,33 @@ export default {
 }
 
 .board {
-  width: 1200px;
+  position: relative;
+  width: 250px;
+  height: 250px;
   align-items: center;
   margin: 0 auto;
-  display: flex;
+  border: 1px solid black;
+  /* transition: 2s all ease; */
+  /* display: flex; 
   flex-direction: column;
-  gap: 5px;
+  gap: 5px; */
 }
 
 .row {
-  display: flex;
-  gap: 5px;
+  /* display: flex; */
+  /* gap: 5px; */
+  /* transition: 2s all ease; */
 }
 
 .candy {
-  position: relative;
+  position: absolute;
+
   color: black;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   border: 1px solid black;
   display: inline-block;
-  margin: 0;
+  /* transition: 2s all ease; */
 }
 </style>
