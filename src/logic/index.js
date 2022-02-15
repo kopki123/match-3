@@ -123,8 +123,6 @@ const game = () => {
             candyNeedClearTotal = [...candyNeedClearTotal, ...candyNeedClearRow]
         }
 
-        // console.log(candyNeedClearTotal);
-
         if(candyNeedClearTotal.length >= 3) {
             return candyNeedClearTotal
         }
@@ -133,9 +131,7 @@ const game = () => {
     }
 
     const clearUpMatch = (clearUpArr) => {
-        
         if(clearUpArr.length === 0) return;
-        // console.log(clearUpArr);
 
         for (let y = 0; y < boardArray.value.length; y++) {
             for (let x = 0; x < boardArray.value[y].length; x++) {

@@ -145,32 +145,19 @@ export default {
 
 .board {
   position: relative;
-  /* width: 250px; */
-  /* height: 250px; */
   align-items: center;
   margin: 0 auto;
-  /* border: 1px solid black; */
-  /* transition: 2s all ease; */
-  /* display: flex; 
-  flex-direction: column;
-  gap: 5px; */
 }
 
 .row {
-  /* display: flex; */
-  /* gap: 5px; */
-  /* transition: 2s all ease; */
 }
 
 .candy {
   position: absolute;
-
   color: black;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  /* border: 1px solid black; */
   display: inline-block;
-  /* transition: 2s all ease; */
 }
 </style>
