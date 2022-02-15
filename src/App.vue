@@ -45,9 +45,7 @@ export default {
     const draggingCandy = ref(null);
     const dropingCandy = ref(null);
 
-    onMounted(() => {
-      init();
-    });
+    onMounted(init);
 
     watch(boardArray, () => {
       while (checkEmpty()) {
@@ -62,9 +60,7 @@ export default {
     });
 
     watch(actionPoints, () => {
-      if (actionPoints.value === 0) {
-        resetGame();
-      }
+      if (actionPoints.value === 0) resetGame();
     });
 
     const dragstart = (candy) => {
@@ -154,12 +150,5 @@ export default {
   border: 1px solid black;
   display: inline-block;
   margin: 0;
-  position: relative;
-  background: radial-gradient(
-    circle at 50% 120%,
-    #323232,
-    #0a0a0a 80%,
-    #000000 100%
-  );
 }
 </style>

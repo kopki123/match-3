@@ -3,8 +3,8 @@ import { ref } from 'vue';
 const game = () => {
     const boardArray = ref([]);
     const setting = ref({
-        row: 5,
-        column: 5,
+        row: 10,
+        column: 10,
         colors: ['red', 'blue', 'green', 'pink'],
     })
     const candyId = ref(0);
@@ -83,7 +83,7 @@ const game = () => {
 
     const checkMatch = (candy) => {
         const { x, y, color, id } = candy;
-        // console.log( x, y, color, id);
+
         if(candy.color === '') return [];
 
         const candyNeedClearColumn = [];
@@ -121,6 +121,8 @@ const game = () => {
         if(candyNeedClearRow.length >= 2) {
             candyNeedClearTotal = [...candyNeedClearTotal, ...candyNeedClearRow]
         }
+
+        console.log(candyNeedClearTotal);
 
         if(candyNeedClearTotal.length >= 3) {
             return candyNeedClearTotal
