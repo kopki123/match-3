@@ -3,13 +3,13 @@ import { ref } from 'vue';
 const game = () => {
     const boardArray = ref([]);
     const setting = ref({
-        row: 5,
-        column: 5,
-        colors: ['red', 'blue', 'green', 'pink'],
+        row: 10,
+        column: 10,
+        colors: ['red', 'blue', 'yellow', 'green', 'pink'],
     })
     const candyId = ref(0);
     const score = ref(0);
-    const actionPoints = ref(5);
+    const actionPoints = ref(10);
     const isGameStart = ref(false);
 
     const init = () => {
@@ -123,7 +123,7 @@ const game = () => {
             candyNeedClearTotal = [...candyNeedClearTotal, ...candyNeedClearRow]
         }
 
-        console.log(candyNeedClearTotal);
+        // console.log(candyNeedClearTotal);
 
         if(candyNeedClearTotal.length >= 3) {
             return candyNeedClearTotal
@@ -135,7 +135,7 @@ const game = () => {
     const clearUpMatch = (clearUpArr) => {
         
         if(clearUpArr.length === 0) return;
-        console.log(clearUpArr);
+        // console.log(clearUpArr);
 
         for (let y = 0; y < boardArray.value.length; y++) {
             for (let x = 0; x < boardArray.value[y].length; x++) {
@@ -153,7 +153,7 @@ const game = () => {
 
     const resetGame = () => {
         setTimeout(() => {
-            alert('reset');
+            alert(`此局得分為${score.value}, 按確定重新開始`);
             isGameStart.value = false;
             candyId.value = 0;
             score.value = 0;
@@ -178,6 +178,7 @@ const game = () => {
 
     return {
         boardArray,
+        setting,
         score,
         actionPoints,
         isGameStart,

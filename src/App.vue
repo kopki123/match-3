@@ -1,10 +1,16 @@
 <template>
   <h1>Match 3</h1>
   <div class="info">
-    <h2>score: {{ score }}</h2>
-    <h2>actionPoints: {{ actionPoints }}</h2>
+    <h2>得分: {{ score }}</h2>
+    <h2>行動點數: {{ actionPoints }}</h2>
   </div>
-  <div class="board">
+  <div
+    class="board"
+    :style="{
+      width: setting.column * 50 + 'px',
+      height: setting.row * 50 + 'px',
+    }"
+  >
     <div class="row" v-for="(row, index) in boardArray" :key="index">
       <div
         class="candy"
@@ -35,6 +41,7 @@ export default {
   setup() {
     const {
       boardArray,
+      setting,
       score,
       actionPoints,
       isGameStart,
@@ -52,14 +59,17 @@ export default {
     onMounted(init);
 
     watch(boardArray, () => {
-      while (checkEmpty()) {
-        dropCandy();
-      }
-      boardArray.value.forEach((row) => {
-        row.forEach((candy) => {
-          clearUpMatch(checkMatch(candy));
+      setTimeout(() => {
+        while (checkEmpty()) {
+          dropCandy();
+        }
+
+        boardArray.value.forEach((row) => {
+          row.forEach((candy) => {
+            clearUpMatch(checkMatch(candy));
+          });
         });
-      });
+      }, 300);
     });
 
     watch(actionPoints, () => {
@@ -110,7 +120,7 @@ export default {
       actionPoints.value -= 1;
     };
 
-    return { boardArray, score, actionPoints, dragstart, drop };
+    return { boardArray, setting, score, actionPoints, dragstart, drop };
   },
 };
 </script>
@@ -135,11 +145,11 @@ export default {
 
 .board {
   position: relative;
-  width: 250px;
-  height: 250px;
+  /* width: 250px; */
+  /* height: 250px; */
   align-items: center;
   margin: 0 auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   /* transition: 2s all ease; */
   /* display: flex; 
   flex-direction: column;
@@ -159,7 +169,7 @@ export default {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: inline-block;
   /* transition: 2s all ease; */
 }
